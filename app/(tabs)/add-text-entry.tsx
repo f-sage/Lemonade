@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet } from 'react-native';
+import { Button, ScrollView, StyleSheet, TextInput } from 'react-native';
 
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
@@ -7,6 +7,10 @@ import { Fonts } from '@/constants/theme';
 
 
 export default function AddTextEntryScreen() {
+  const onSavePressed = ()=>{
+
+  }
+
   return (
     <ScrollView>
          <ThemedView style={styles.wrapper}>
@@ -17,6 +21,10 @@ export default function AddTextEntryScreen() {
              }}>
             Add entry
            </ThemedText>
+
+            <TextInput multiline placeholder='Write some text...'/>
+            
+            <Button title="Save" onPress={onSavePressed}/>
           </ThemedView>
     </ScrollView>
   );
