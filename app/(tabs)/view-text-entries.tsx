@@ -2,13 +2,33 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Fonts } from '@/constants/theme';
 
-import { FlatList, ScrollView, StyleSheet } from 'react-native';
+import { useSQLiteContext } from "expo-sqlite";
+import { useEffect, useState } from 'react';
+import { FlatList, StyleSheet } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
+interface TextEntry{
+  id:number;
+  text:string;
+}
+
 export default function ViewTextEntriesScreen() {
-  const entries=["123","456"];
+  const database = useSQLiteContext();
+  const [entries, setEntries] = useState<TextEntry[]>([]);
+
+  const loadData = async () => {
+    const result = await database.getAllAsync<TextEntry>(`SELECT * FROM textentries LIMIT 50`);
+    console.log('loaded data',result);
+    setEntries(result ?? []);
+  };
+
+   useEffect(() => {
+    console.log('load data');
+      loadData();
+  },[]);
+
+
   return (
-  <ScrollView>
     <ThemedView style={styles.wrapper}>
        <ThemedText
         type="title"
@@ -25,16 +45,15 @@ export default function ViewTextEntriesScreen() {
             renderItem={({item}) => 
             <ThemedView>
               <ThemedText>
-                {item}
+                {item.text}
               </ThemedText>
             </ThemedView>
           }
-            keyExtractor={item => item}
+            keyExtractor={item => item.id}
           />
         </SafeAreaView>
       </SafeAreaProvider>
     </ThemedView>
-  </ScrollView>
   );
 }
 
