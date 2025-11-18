@@ -41,7 +41,7 @@ export default function AddTextEntryScreen() {
               multiline 
               placeholder='Write some text...'
               value={entryText}
-              onChange={setEntryText}
+              onChangeText={setEntryText}
             />
             
             <Button title="Save" onPress={onSavePressed}/>
