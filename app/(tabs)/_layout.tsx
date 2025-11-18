@@ -30,6 +30,14 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
         }}
       />
+        <Tabs.Screen
+        name="add-text-entry"
+        options={{
+          title: 'Add entry',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+        }}
+      />
+      
     </Tabs>
   );
 }
