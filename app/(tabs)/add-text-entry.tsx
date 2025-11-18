@@ -4,11 +4,26 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 
 import { Fonts } from '@/constants/theme';
-
+import { router } from 'expo-router';
+import { useSQLiteContext } from "expo-sqlite";
+import { useState } from "react";
 
 export default function AddTextEntryScreen() {
-  const onSavePressed = ()=>{
+  const database = useSQLiteContext();
+  const [entryText, setEntryText] = useState("");
 
+  const onSavePressed = async ()=>{
+    try {
+      const response = await database.runAsync(
+        `INSERT INTO textentries (text) VALUES (?)`,
+       entryText
+      );
+      console.log("Item saved successfully:", response?.changes!);
+      router.back();
+    } catch (error) {
+      console.error("Error saving item:", error);
+    }
+  
   }
 
   return (
@@ -22,7 +37,12 @@ export default function AddTextEntryScreen() {
             Add entry
            </ThemedText>
 
-            <TextInput multiline placeholder='Write some text...'/>
+            <TextInput 
+              multiline 
+              placeholder='Write some text...'
+              value={entryText}
+              onChange={setEntryText}
+            />
             
             <Button title="Save" onPress={onSavePressed}/>
           </ThemedView>
