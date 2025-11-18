@@ -2,6 +2,7 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Fonts } from '@/constants/theme';
 
+import { useIsFocused } from '@react-navigation/native';
 import { useSQLiteContext } from "expo-sqlite";
 import { useEffect, useState } from 'react';
 import { FlatList, StyleSheet } from 'react-native';
@@ -15,6 +16,7 @@ interface TextEntry{
 export default function ViewTextEntriesScreen() {
   const database = useSQLiteContext();
   const [entries, setEntries] = useState<TextEntry[]>([]);
+   const isFocused = useIsFocused();
 
   const loadData = async () => {
     const result = await database.getAllAsync<TextEntry>(`SELECT * FROM textentries LIMIT 50`);
@@ -23,10 +25,9 @@ export default function ViewTextEntriesScreen() {
   };
 
    useEffect(() => {
-    console.log('load data');
-      loadData();
-  },[]);
-
+    if(!isFocused) return;
+    loadData();
+  },[isFocused]);
 
   return (
     <ThemedView style={styles.wrapper}>
