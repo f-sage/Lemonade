@@ -14,7 +14,7 @@ const createDbIfNeeded = async (db: SQLiteDatabase) => {
   try {
     // Create a table
     const response = await db.execAsync(
-      "CREATE TABLE IF NOT EXISTS textentries (id INTEGER PRIMARY KEY AUTOINCREMENT, text TEXT)"
+      "CREATE TABLE IF NOT EXISTS textentries (id INTEGER PRIMARY KEY AUTOINCREMENT, text TEXT, datetime TEXT)"
     );
     console.log("Database created", response);
   } catch (error) {

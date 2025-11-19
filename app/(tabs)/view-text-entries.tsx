@@ -11,6 +11,7 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 interface TextEntry{
   id:number;
   text:string;
+  datetime:string; // ISO string
 }
 
 export default function ViewTextEntriesScreen() {
@@ -47,6 +48,9 @@ export default function ViewTextEntriesScreen() {
             <ThemedView>
               <ThemedText>
                 {item.text}
+              </ThemedText>
+              <ThemedText>
+                {new Date(item.datetime).toLocaleDateString()}
               </ThemedText>
             </ThemedView>
           }
