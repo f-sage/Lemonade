@@ -4,13 +4,21 @@ import { TextEntry } from '@/models/TextEntry';
 import { StyleSheet } from 'react-native';
 
 export const EntryListItem = ({entry}:{entry:TextEntry}) => {
+  const date =new Date(entry.datetime).toLocaleDateString();
+  const time =new Date(entry.datetime).toLocaleTimeString();
+
   return (
     <ThemedView style={styles.itemWrapper}>
-        <ThemedText style={styles.date}>
-            {new Date(entry.datetime).toLocaleDateString()}
+      <ThemedView style={styles.date}>
+        <ThemedText>
+          {date}
         </ThemedText>
-        <ThemedText style={styles.text}>
-            {entry.text}
+        <ThemedText>
+          {time}
+        </ThemedText>
+      </ThemedView>
+        <ThemedText style={styles.text} numberOfLines={2}>
+          {entry.text}
         </ThemedText>
     </ThemedView>
   )
@@ -20,18 +28,18 @@ const styles = StyleSheet.create({
   itemWrapper:{
     display:'flex',
     flexDirection:'row',
-    backgroundColor:'#d3ffc2',
+    gap:8,
+    backgroundColor:'rgba(138, 83, 143, 0.2)',
     borderRadius:1,
     margin:1,
     padding:3
   },
   text:{
-    flexGrow:2,
-    backgroundColor:"#567ea3"
+    margin:2,
+    flexShrink:1
   },
   date:{
-    flexGrow:1,
-    backgroundColor:"#84d9d9"
+    backgroundColor:'transparent'
   },})
 
 export default EntryListItem;

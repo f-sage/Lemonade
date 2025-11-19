@@ -1,7 +1,6 @@
 import { EntryListItem } from '@/components/EntryListItem';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
-import { Fonts } from '@/constants/theme';
 
 import { TextEntry } from '@/models/TextEntry';
 import { useIsFocused } from '@react-navigation/native';
@@ -30,9 +29,7 @@ export default function ViewTextEntriesScreen() {
     <ThemedView style={styles.wrapper}>
        <ThemedText
         type="title"
-        style={{
-        fontFamily: Fonts.rounded,
-        }}>
+        style={styles.title}>
         Entries
         </ThemedText>
 
@@ -53,20 +50,14 @@ export default function ViewTextEntriesScreen() {
 
 
 const styles = StyleSheet.create({
-  headerImage: {
-    color: '#808080',
-    bottom: -90,
-    left: -35,
-    position: 'absolute',
-  },
-  titleContainer: {
-    flexDirection: 'row',
-    gap: 8,
+  title: {
+    marginTop:16,
+    marginLeft:8
   },
    wrapper: {
     flex: 1,
-    padding: 32,
-    gap: 16,
+    paddingVertical:4,
+    paddingHorizontal:8,
     overflow: 'hidden',
   }
 });
