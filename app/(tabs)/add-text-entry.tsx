@@ -13,10 +13,11 @@ export default function AddTextEntryScreen() {
   const [entryText, setEntryText] = useState("");
 
   const onSavePressed = async ()=>{
+    const currentDateTime = new Date().toISOString();
     try {
       const response = await database.runAsync(
-        `INSERT INTO textentries (text) VALUES (?)`,
-       entryText
+        `INSERT INTO textentries (text, datetime) VALUES (?, ?)`,
+       [entryText, currentDateTime]
       );
       console.log("Item saved successfully:", response?.changes!);
       router.back();
