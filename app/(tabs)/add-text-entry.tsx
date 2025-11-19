@@ -20,6 +20,7 @@ export default function AddTextEntryScreen() {
        [entryText, currentDateTime]
       );
       console.log("Item saved successfully:", response?.changes!);
+      setEntryText("");
       router.back();
     } catch (error) {
       console.error("Error saving item:", error);
