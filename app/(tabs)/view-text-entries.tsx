@@ -2,17 +2,12 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Fonts } from '@/constants/theme';
 
+import { TextEntry } from '@/models/TextEntry';
 import { useIsFocused } from '@react-navigation/native';
 import { useSQLiteContext } from "expo-sqlite";
 import { useEffect, useState } from 'react';
 import { FlatList, StyleSheet } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-
-interface TextEntry{
-  id:number;
-  text:string;
-  datetime:string; // ISO string
-}
 
 export default function ViewTextEntriesScreen() {
   const database = useSQLiteContext();
