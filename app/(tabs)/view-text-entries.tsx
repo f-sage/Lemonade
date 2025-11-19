@@ -1,3 +1,4 @@
+import { EntryListItem } from '@/components/EntryListItem';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Fonts } from '@/constants/theme';
@@ -40,14 +41,7 @@ export default function ViewTextEntriesScreen() {
           <FlatList
             data={entries}
             renderItem={({item}) => 
-            <ThemedView>
-              <ThemedText>
-                {item.text}
-              </ThemedText>
-              <ThemedText>
-                {new Date(item.datetime).toLocaleDateString()}
-              </ThemedText>
-            </ThemedView>
+           <EntryListItem entry={item}/>
           }
             keyExtractor={item => item.id}
           />
@@ -74,5 +68,5 @@ const styles = StyleSheet.create({
     padding: 32,
     gap: 16,
     overflow: 'hidden',
-  },
+  }
 });
