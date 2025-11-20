@@ -5,28 +5,12 @@ import { HapticTab } from '@/components/haptic-tab';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
-import { SQLiteDatabase, SQLiteProvider } from "expo-sqlite";
-
-const DB_NAME = "lemonade.db"
-
-const createDbIfNeeded = async (db: SQLiteDatabase) => {
-  console.log("Creating database");
-  try {
-    // Create a table
-    const response = await db.execAsync(
-      "CREATE TABLE IF NOT EXISTS textentries (id INTEGER PRIMARY KEY AUTOINCREMENT, text TEXT, datetime TEXT)"
-    );
-    console.log("Database created", response);
-  } catch (error) {
-    console.error("Error creating database:", error);
-  }
-};
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
 
   return (
-    <SQLiteProvider databaseName={DB_NAME} onInit={createDbIfNeeded}>
+    <>
       <Tabs
         screenOptions={{
           tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
@@ -62,6 +46,6 @@ export default function TabLayout() {
           }}
         />
       </Tabs>
-    </SQLiteProvider>
+    </>
   );
 }
