@@ -4,4 +4,10 @@ export interface TextEntry{
   datetime:string; // ISO string
 }
 
+export const emptyTextEntry = {
+  id:0,
+  text:'',
+  datetime:''
+}
+
 export default TextEntry;
