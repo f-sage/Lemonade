@@ -1,26 +1,30 @@
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { TextEntry } from '@/models/TextEntry';
+import { Link } from 'expo-router';
 import { StyleSheet } from 'react-native';
 
 export const EntryListItem = ({entry}:{entry:TextEntry}) => {
   const date =new Date(entry.datetime).toLocaleDateString();
   const time =new Date(entry.datetime).toLocaleTimeString();
+  const linkHref = '/entry/'+entry.id;
 
   return (
-    <ThemedView style={styles.itemWrapper}>
-      <ThemedView style={styles.date}>
-        <ThemedText>
-          {date}
-        </ThemedText>
-        <ThemedText>
-          {time}
-        </ThemedText>
+    <Link href={linkHref}>
+      <ThemedView style={styles.itemWrapper}>
+        <ThemedView style={styles.date}>
+          <ThemedText>
+            {date}
+          </ThemedText>
+          <ThemedText>
+            {time}
+          </ThemedText>
+        </ThemedView>
+          <ThemedText style={styles.text} numberOfLines={2}>
+            {entry.text}
+          </ThemedText>
       </ThemedView>
-        <ThemedText style={styles.text} numberOfLines={2}>
-          {entry.text}
-        </ThemedText>
-    </ThemedView>
+    </Link>
   )
 };
 
