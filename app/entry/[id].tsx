@@ -48,14 +48,12 @@ const styles = StyleSheet.create({
    fontStyle:'italic'
   },
    wrapper: {
-    flex: 1,
     paddingVertical:4,
     paddingHorizontal:16,
     overflow: 'hidden',
   },
   text:{
     marginTop: 8,
-    textAlign: "justify", //as of 2025-11-20, this does not work with selectable but hoping for the best!! 
   }
 });
 
