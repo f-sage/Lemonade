@@ -1,9 +1,7 @@
 import { Button, ScrollView, StyleSheet, TextInput } from 'react-native';
 
-import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 
-import { Fonts } from '@/constants/theme';
 import { router } from 'expo-router';
 import { useSQLiteContext } from "expo-sqlite";
 import { useState } from "react";
@@ -31,14 +29,6 @@ export default function AddTextEntryScreen() {
   return (
     <ScrollView>
          <ThemedView style={styles.wrapper}>
-           <ThemedText
-             type="title"
-             style={{
-               fontFamily: Fonts.rounded,
-             }}>
-            Add entry
-           </ThemedText>
-
             <TextInput 
               multiline 
               placeholder='Write some text...'
@@ -53,16 +43,6 @@ export default function AddTextEntryScreen() {
 }
 
 const styles = StyleSheet.create({
-  headerImage: {
-    color: '#808080',
-    bottom: -90,
-    left: -35,
-    position: 'absolute',
-  },
-  titleContainer: {
-    flexDirection: 'row',
-    gap: 8,
-  },
    wrapper: {
     flex: 1,
     padding: 32,

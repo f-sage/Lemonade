@@ -1,5 +1,4 @@
 import { EntryListItem } from '@/components/EntryListItem';
-import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 
 import { TextEntry } from '@/models/TextEntry';
@@ -27,12 +26,6 @@ export default function ViewTextEntriesScreen() {
 
   return (
     <ThemedView style={styles.wrapper}>
-       <ThemedText
-        type="title"
-        style={styles.title}>
-        Entries
-        </ThemedText>
-
       <SafeAreaProvider>
         <SafeAreaView style={styles.wrapper}>
           <FlatList
@@ -50,10 +43,6 @@ export default function ViewTextEntriesScreen() {
 
 
 const styles = StyleSheet.create({
-  title: {
-    marginTop:16,
-    marginLeft:8
-  },
    wrapper: {
     flex: 1,
     paddingVertical:4,
