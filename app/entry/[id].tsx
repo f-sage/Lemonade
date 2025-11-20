@@ -7,7 +7,7 @@ export const ViewEntryScreen = () => {
 
   return (
     <ThemedView>
-      <ThemedText>
+      <ThemedText selectable={true}>
         entry id: {id}
       </ThemedText>
     </ThemedView>
