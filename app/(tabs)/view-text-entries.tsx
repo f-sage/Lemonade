@@ -1,5 +1,4 @@
 import { EntryListItem } from '@/components/EntryListItem';
-import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 
 import { TextEntry } from '@/models/TextEntry';
@@ -14,25 +13,22 @@ export default function ViewTextEntriesScreen() {
   const [entries, setEntries] = useState<TextEntry[]>([]);
    const isFocused = useIsFocused();
 
-  const loadData = async () => {
+   useEffect(() => {
+    if(!isFocused) return;
+
+    const loadData = async () => {
     const result = await database.getAllAsync<TextEntry>(`SELECT * FROM textentries LIMIT 50`);
-    console.log('loaded data',result);
+    console.log('loaded data', result);
     setEntries(result ?? []);
   };
 
-   useEffect(() => {
-    if(!isFocused) return;
     loadData();
-  },[isFocused]);
+  },
+  [isFocused, database]
+);
 
   return (
     <ThemedView style={styles.wrapper}>
-       <ThemedText
-        type="title"
-        style={styles.title}>
-        Entries
-        </ThemedText>
-
       <SafeAreaProvider>
         <SafeAreaView style={styles.wrapper}>
           <FlatList
@@ -40,7 +36,7 @@ export default function ViewTextEntriesScreen() {
             renderItem={({item}) => 
            <EntryListItem entry={item}/>
           }
-            keyExtractor={item => item.id}
+            keyExtractor={item => item.id.toString()}
           />
         </SafeAreaView>
       </SafeAreaProvider>
@@ -50,10 +46,6 @@ export default function ViewTextEntriesScreen() {
 
 
 const styles = StyleSheet.create({
-  title: {
-    marginTop:16,
-    marginLeft:8
-  },
    wrapper: {
     flex: 1,
     paddingVertical:4,

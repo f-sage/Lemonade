@@ -1,29 +1,31 @@
 import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
+import { useThemeColor } from '@/hooks/use-theme-color';
 import { TextEntry } from '@/models/TextEntry';
 import { Link } from 'expo-router';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 export const EntryListItem = ({entry}:{entry:TextEntry}) => {
+  const backgroundColor = useThemeColor({}, 'transparentBackground');
+  
   const date =new Date(entry.datetime).toLocaleDateString();
   const time =new Date(entry.datetime).toLocaleTimeString();
-  const linkHref = '/entry/'+entry.id;
+  const linkHref = '/entry/'+entry.id.toString();
 
   return (
     <Link href={linkHref}>
-      <ThemedView style={styles.itemWrapper}>
-        <ThemedView style={styles.date}>
+      <View style={{...styles.itemWrapper, backgroundColor}}>
+        <View style={styles.date}>
           <ThemedText>
             {date}
           </ThemedText>
           <ThemedText>
             {time}
           </ThemedText>
-        </ThemedView>
+        </View>
           <ThemedText style={styles.text} numberOfLines={2}>
             {entry.text}
           </ThemedText>
-      </ThemedView>
+      </View>
     </Link>
   )
 };
@@ -40,7 +42,8 @@ const styles = StyleSheet.create({
   },
   text:{
     margin:2,
-    flexShrink:1
+    flexShrink:1,
+    flexGrow:1
   },
   date:{
     backgroundColor:'transparent'

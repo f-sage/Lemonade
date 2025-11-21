@@ -1,12 +1,9 @@
-import { Button, ScrollView, StyleSheet, TextInput } from 'react-native';
-
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-
-import { Fonts } from '@/constants/theme';
 import { router } from 'expo-router';
 import { useSQLiteContext } from "expo-sqlite";
 import { useState } from "react";
+import { Button, KeyboardAvoidingView, Platform, StyleSheet, TextInput } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { ThemedView } from '../../components/themed-view';
 
 export default function AddTextEntryScreen() {
   const database = useSQLiteContext();
@@ -29,44 +26,49 @@ export default function AddTextEntryScreen() {
   }
 
   return (
-    <ScrollView>
-         <ThemedView style={styles.wrapper}>
-           <ThemedText
-             type="title"
-             style={{
-               fontFamily: Fonts.rounded,
-             }}>
-            Add entry
-           </ThemedText>
-
-            <TextInput 
-              multiline 
-              placeholder='Write some text...'
-              value={entryText}
-              onChangeText={setEntryText}
-            />
-            
-            <Button title="Save" onPress={onSavePressed}/>
-          </ThemedView>
-    </ScrollView>
+    <SafeAreaView style={styles.container}>
+      <KeyboardAvoidingView 
+      // iOS needs 'padding', Android usually works best with 'height' 
+      // or sometimes no behavior if windowSoftInputMode is set to adjustResize
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.keyboardView}
+      >
+        <ThemedView style={styles.inputContainer}>
+          <TextInput 
+          multiline 
+          placeholder='Write some text...'
+          value={entryText}
+          onChangeText={setEntryText}
+          />   
+        </ThemedView>
+        <ThemedView style={styles.buttonContainer}>
+          <Button title="Save" onPress={onSavePressed}/> 
+        </ThemedView>
+      </KeyboardAvoidingView>
+    </SafeAreaView>  
   );
 }
 
 const styles = StyleSheet.create({
-  headerImage: {
-    color: '#808080',
-    bottom: -90,
-    left: -35,
-    position: 'absolute',
-  },
-  titleContainer: {
-    flexDirection: 'row',
-    gap: 8,
-  },
-   wrapper: {
+  container: {
     flex: 1,
-    padding: 32,
-    gap: 16,
-    overflow: 'hidden',
   },
+  keyboardView: {
+    flex: 1,
+  },
+  inputContainer: {
+    flex: 1, // fills space but shrinks when keyboard opens
+    padding: 20,
+  },
+  input: {
+    flex: 1,
+    textAlignVertical: 'top', // Android fix to start text at top
+  },
+  buttonContainer: {
+    padding: 20,
+    backgroundColor:"rgba(1,1,1,0.1)"
+  },
+  saveButton: {
+    padding: 15,
+  }
 });
