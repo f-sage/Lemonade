@@ -1,0 +1,13 @@
+{
+  "home": {
+    "welcome": "Welcome to the app!",
+    "description": "This app supports multiple languages."
+  },
+
+  "tabs": {
+    "home": "Home",
+    "add-text-entry": "Add entry",
+    "view-text-entries": "Entries",
+    "settings": "Settings"
+  }
+}
