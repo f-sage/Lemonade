@@ -13,16 +13,19 @@ export default function ViewTextEntriesScreen() {
   const [entries, setEntries] = useState<TextEntry[]>([]);
    const isFocused = useIsFocused();
 
-  const loadData = async () => {
+   useEffect(() => {
+    if(!isFocused) return;
+
+    const loadData = async () => {
     const result = await database.getAllAsync<TextEntry>(`SELECT * FROM textentries LIMIT 50`);
-    console.log('loaded data',result);
+    console.log('loaded data', result);
     setEntries(result ?? []);
   };
 
-   useEffect(() => {
-    if(!isFocused) return;
     loadData();
-  },[isFocused]);
+  },
+  [isFocused, database]
+);
 
   return (
     <ThemedView style={styles.wrapper}>
