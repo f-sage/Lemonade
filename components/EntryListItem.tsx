@@ -42,7 +42,8 @@ const styles = StyleSheet.create({
   },
   text:{
     margin:2,
-    flexShrink:1
+    flexShrink:1,
+    flexGrow:1
   },
   date:{
     backgroundColor:'transparent'
