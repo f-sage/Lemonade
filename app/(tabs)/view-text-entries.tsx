@@ -36,7 +36,7 @@ export default function ViewTextEntriesScreen() {
             renderItem={({item}) => 
            <EntryListItem entry={item}/>
           }
-            keyExtractor={item => item.id}
+            keyExtractor={item => item.id.toString()}
           />
         </SafeAreaView>
       </SafeAreaProvider>
