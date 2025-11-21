@@ -50,7 +50,6 @@ const styles = StyleSheet.create({
    wrapper: {
     paddingVertical:4,
     paddingHorizontal:16,
-    overflow: 'hidden',
   },
   text:{
     marginTop: 8,
