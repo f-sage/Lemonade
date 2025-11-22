@@ -40,27 +40,28 @@ const initI18n = async () => {
             else{
                 selectedLanguage = 'en-US';
             }
-
-            await i18n.use(initReactI18next).init({
-                resources,
-                lng:selectedLanguage,
-                fallbackLng:{
-                    "en-*": ["en-US", "en"],
-                    default: ["en-US"],
-                },
-                interpolation: {
-                    escapeValue: false,
-                },
-                react: {
-                    useSuspense: false,
-                },
-            });
-
-            // Save the selected language
-            if (!savedLanguage) {
-                await AsyncStorage.setItem(LANGUAGE_KEY, selectedLanguage);
-            }
         }
+
+        await i18n.use(initReactI18next).init({
+            resources,
+            lng:selectedLanguage,
+            fallbackLng:{
+                "en-*": ["en-US", "en"],
+                default: ["en-US"],
+            },
+            interpolation: {
+                escapeValue: false,
+            },
+            react: {
+                useSuspense: false,
+            },
+        });
+
+        // Save the selected language
+        if (!savedLanguage) {
+            await AsyncStorage.setItem(LANGUAGE_KEY, selectedLanguage);
+        }
+       
     } 
     catch (error) {
         console.error("Error initializing i18n:", error);
