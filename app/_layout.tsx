@@ -4,6 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/use-color-scheme';
+import "@/i18n";
 import { createDbIfNeeded, DB_NAME } from '@/scripts/init-db';
 import { SQLiteProvider } from 'expo-sqlite';
 
