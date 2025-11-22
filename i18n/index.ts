@@ -14,7 +14,7 @@ const resources = {
   uk: { translation: translationUk },
 };
 
-const LANGUAGE_KEY = "@app_language";
+export const LANGUAGE_KEY = "@app_language";
 
 const initI18n = async () => {
     try {
