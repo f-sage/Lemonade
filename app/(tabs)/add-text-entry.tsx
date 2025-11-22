@@ -1,11 +1,13 @@
 import { router } from 'expo-router';
 import { useSQLiteContext } from "expo-sqlite";
 import { useState } from "react";
+import { useTranslation } from 'react-i18next';
 import { Button, KeyboardAvoidingView, Platform, StyleSheet, TextInput } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemedView } from '../../components/themed-view';
 
 export default function AddTextEntryScreen() {
+  const { t } = useTranslation();
   const database = useSQLiteContext();
   const [entryText, setEntryText] = useState("");
 
@@ -36,13 +38,13 @@ export default function AddTextEntryScreen() {
         <ThemedView style={styles.inputContainer}>
           <TextInput 
           multiline 
-          placeholder='Write some text...'
+          placeholder={t("add-text-entry.placeholder")} 
           value={entryText}
           onChangeText={setEntryText}
           />   
         </ThemedView>
         <ThemedView style={styles.buttonContainer}>
-          <Button title="Save" onPress={onSavePressed}/> 
+          <Button title={t("add-text-entry.save")} onPress={onSavePressed}/> 
         </ThemedView>
       </KeyboardAvoidingView>
     </SafeAreaView>  

@@ -12,5 +12,9 @@
   },
   "settings": {
     "language" : "English"
+  },
+  "add-text-entry":{
+    "save" : "Save",
+    "placeholder" : "Write some text..."
   }
 }

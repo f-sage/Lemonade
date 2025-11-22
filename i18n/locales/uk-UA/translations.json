@@ -11,5 +11,9 @@
   },
   "settings": {
     "language" : "Українська"
+  },
+  "add-text-entry":{
+    "save" : "Зберегти",
+    "placeholder" : "Введіть текст..."
   }
 }
