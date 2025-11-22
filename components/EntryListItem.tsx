@@ -2,13 +2,16 @@ import { ThemedText } from '@/components/themed-text';
 import { useThemeColor } from '@/hooks/use-theme-color';
 import { TextEntry } from '@/models/TextEntry';
 import { Link } from 'expo-router';
+import { useTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
 
 export const EntryListItem = ({entry}:{entry:TextEntry}) => {
   const backgroundColor = useThemeColor({}, 'transparentBackground');
+  const { i18n } = useTranslation();
+  const locale = i18n.language;
   
-  const date =new Date(entry.datetime).toLocaleDateString();
-  const time =new Date(entry.datetime).toLocaleTimeString();
+  const date = new Date(entry.datetime).toLocaleDateString(locale);
+  const time = new Date(entry.datetime).toLocaleTimeString(locale);
   const linkHref = '/entry/'+entry.id.toString();
 
   return (
