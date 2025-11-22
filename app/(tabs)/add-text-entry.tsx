@@ -3,7 +3,7 @@ import { useSQLiteContext } from "expo-sqlite";
 import { useState } from "react";
 import { useTranslation } from 'react-i18next';
 import { Button, KeyboardAvoidingView, Platform, StyleSheet, TextInput } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { ThemedView } from '../../components/themed-view';
 
 export default function AddTextEntryScreen() {
@@ -28,6 +28,7 @@ export default function AddTextEntryScreen() {
   }
 
   return (
+    <SafeAreaProvider>
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView 
       // iOS needs 'padding', Android usually works best with 'height' 
@@ -47,7 +48,7 @@ export default function AddTextEntryScreen() {
           <Button title={t("add-text-entry.save")} onPress={onSavePressed}/> 
         </ThemedView>
       </KeyboardAvoidingView>
-    </SafeAreaView>  
+    </SafeAreaView>  </SafeAreaProvider>
   );
 }
 
