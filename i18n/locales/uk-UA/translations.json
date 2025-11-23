@@ -1,0 +1,19 @@
+{
+  "home": {
+    "welcome": "Ласкаво просимо!",
+    "description": "Цей застосунок підтримує декілька мов."
+  },
+  "tabs":{
+    "home": "Головна",
+    "add-text-entry": "Новий допис",
+    "view-text-entries": "Дописи",
+    "settings": "Налаштування"
+  },
+  "settings": {
+    "language" : "Українська"
+  },
+  "add-text-entry":{
+    "save" : "Зберегти",
+    "placeholder" : "Введіть текст..."
+  }
+}

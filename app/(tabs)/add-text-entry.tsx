@@ -1,11 +1,13 @@
 import { router } from 'expo-router';
 import { useSQLiteContext } from "expo-sqlite";
 import { useState } from "react";
+import { useTranslation } from 'react-i18next';
 import { Button, KeyboardAvoidingView, Platform, StyleSheet, TextInput } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { ThemedView } from '../../components/themed-view';
 
 export default function AddTextEntryScreen() {
+  const { t } = useTranslation();
   const database = useSQLiteContext();
   const [entryText, setEntryText] = useState("");
 
@@ -26,26 +28,28 @@ export default function AddTextEntryScreen() {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <KeyboardAvoidingView 
-      // iOS needs 'padding', Android usually works best with 'height' 
-      // or sometimes no behavior if windowSoftInputMode is set to adjustResize
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={styles.keyboardView}
-      >
-        <ThemedView style={styles.inputContainer}>
-          <TextInput 
-          multiline 
-          placeholder='Write some text...'
-          value={entryText}
-          onChangeText={setEntryText}
-          />   
-        </ThemedView>
-        <ThemedView style={styles.buttonContainer}>
-          <Button title="Save" onPress={onSavePressed}/> 
-        </ThemedView>
-      </KeyboardAvoidingView>
-    </SafeAreaView>  
+    <SafeAreaProvider>
+      <SafeAreaView style={styles.container}>
+        <KeyboardAvoidingView 
+        // iOS needs 'padding', Android usually works best with 'height' 
+        // or sometimes no behavior if windowSoftInputMode is set to adjustResize
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={styles.keyboardView}
+        >
+          <ThemedView style={styles.inputContainer}>
+            <TextInput 
+            multiline 
+            placeholder={t("add-text-entry.placeholder")} 
+            value={entryText}
+            onChangeText={setEntryText}
+            />
+          </ThemedView>
+          <ThemedView style={styles.buttonContainer}>
+            <Button title={t("add-text-entry.save")} onPress={onSavePressed}/>
+          </ThemedView>
+        </KeyboardAvoidingView>
+      </SafeAreaView>  
+    </SafeAreaProvider>
   );
 }
 
