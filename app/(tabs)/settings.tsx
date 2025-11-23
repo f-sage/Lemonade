@@ -40,7 +40,7 @@ const SettingsScreen = () => {
               style={styles.button}
             >
               <ThemedText style={styles.buttonText}>
-                Ukrainian
+                Українська
               </ThemedText>
             </TouchableOpacity>
 
