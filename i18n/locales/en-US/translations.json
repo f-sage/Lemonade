@@ -1,7 +1,7 @@
 {
-  "home": {
-    "welcome": "Welcome to the app!",
-    "description": "This app supports multiple languages."
+   "home": {
+    "title": "🍋Lemonade🍋",
+    "description": "This application is in early development."
   },
 
   "tabs": {
