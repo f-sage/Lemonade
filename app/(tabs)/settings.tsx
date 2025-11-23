@@ -5,7 +5,7 @@ import { LANGUAGE_KEY } from "@/i18n";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React from 'react';
 import { useTranslation } from "react-i18next";
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Appearance, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 const SettingsScreen = () => {
@@ -14,6 +14,10 @@ const SettingsScreen = () => {
   const changeLanguageSetting = (newLanguageCode:string)=>{
     i18n.changeLanguage(newLanguageCode)
     AsyncStorage.setItem(LANGUAGE_KEY, newLanguageCode);
+  }
+
+  const changeColorScheme = (newColorScheme:"light"|"dark") => {
+    Appearance.setColorScheme(newColorScheme);
   }
 
   return (
@@ -43,6 +47,24 @@ const SettingsScreen = () => {
             <View
               style={styles.divider}
             />
+
+            <TouchableOpacity
+              onPress={() => changeColorScheme("dark")} 
+              style={styles.button}
+            >
+              <ThemedText style={styles.buttonText}>
+                {t('settings.themes.dark')}
+              </ThemedText>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={() => changeColorScheme("light")} 
+              style={styles.button}
+            >
+              <ThemedText style={styles.buttonText}>
+                {t('settings.themes.light')}
+              </ThemedText>
+            </TouchableOpacity>
             
           </ThemedView>
         </SafeAreaView>

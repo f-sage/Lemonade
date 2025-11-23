@@ -10,7 +10,11 @@
     "settings": "Налаштування"
   },
   "settings": {
-    "language" : "Українська"
+    "language" : "Українська",
+    "themes" : {
+      "dark" : "Темна",
+      "light" : "Світла"
+    }
   },
   "add-text-entry":{
     "save" : "Зберегти",

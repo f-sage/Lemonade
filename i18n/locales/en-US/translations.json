@@ -11,7 +11,11 @@
     "settings": "Settings"
   },
   "settings": {
-    "language" : "English"
+    "language" : "English",
+    "themes" : {
+      "dark" : "Dark",
+      "light" : "Light"
+    }
   },
   "add-text-entry":{
     "save" : "Save",
