@@ -5,7 +5,7 @@ import { LANGUAGE_KEY } from "@/i18n";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React from 'react';
 import { useTranslation } from "react-i18next";
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 const SettingsScreen = () => {
@@ -39,6 +39,10 @@ const SettingsScreen = () => {
                 Ukrainian
               </ThemedText>
             </TouchableOpacity>
+
+            <View
+              style={styles.divider}
+            />
             
           </ThemedView>
         </SafeAreaView>
@@ -62,6 +66,11 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     color:'white',
     fontWeight:'bold'
+  },
+  divider:{
+    borderBottomColor: 'black',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    margin:8
   }
 });
 
