@@ -17,7 +17,7 @@ export const ViewEntryScreen = () => {
     const getFullEntry = async ()=>{
         try {
           const response = await database.getFirstAsync<TextEntry>(
-            `SELECT text, datetime FROM textentries WHERE id = ? `, [id]
+            `SELECT text, createdAt FROM textentries WHERE id = ? `, [id]
           );
           console.log("Entry retrieved successfully:", response);
           setEntry(response ?? emptyTextEntry)
@@ -31,7 +31,7 @@ export const ViewEntryScreen = () => {
     [id, database]
   )
 
-    const datetime = new Date(entry.datetime).toLocaleString();
+    const datetime = new Date(entry.createdAt).toLocaleString();
 
   return (
     <ThemedView style={styles.wrapper}>

@@ -10,8 +10,8 @@ export const EntryListItem = ({entry}:{entry:TextEntry}) => {
   const { i18n } = useTranslation();
   const locale = i18n.language;
   
-  const date = new Date(entry.datetime).toLocaleDateString(locale);
-  const time = new Date(entry.datetime).toLocaleTimeString(locale);
+  const date = new Date(entry.createdAt).toLocaleDateString(locale);
+  const time = new Date(entry.createdAt).toLocaleTimeString(locale);
   const linkHref = '/entry/'+entry.id.toString();
 
   return (

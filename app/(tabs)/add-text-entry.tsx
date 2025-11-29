@@ -15,7 +15,7 @@ export default function AddTextEntryScreen() {
     const currentDateTime = new Date().toISOString();
     try {
       const response = await database.runAsync(
-        `INSERT INTO textentries (text, datetime) VALUES (?, ?)`,
+        `INSERT INTO textentries (text, createdAt) VALUES (?, ?)`,
        [entryText, currentDateTime]
       );
       console.log("Item saved successfully:", response?.changes!);
