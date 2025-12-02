@@ -44,7 +44,7 @@ export const createDbIfNeeded = async (db: SQLiteDatabase) => {
     // a collection of user's answers to questions in one survey
      await db.execAsync(
       "CREATE TABLE IF NOT EXISTS interviews "
-      + "(id INTEGER PRIMARY KEY AUTOINCREMENT, surveyQuestionId INTEGER, createdAt TEXT)"
+      + "(id INTEGER PRIMARY KEY AUTOINCREMENT, createdAt TEXT)"
     )
     
     // user's answer to one question of a survey
