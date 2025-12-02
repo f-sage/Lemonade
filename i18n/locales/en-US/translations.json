@@ -8,7 +8,8 @@
     "home": "Home",
     "add-text-entry": "Add entry",
     "view-text-entries": "Entries",
-    "settings": "Settings"
+    "settings": "Settings",
+    "add-survey": "Add survey"
   },
   "settings": {
     "language" : "English",

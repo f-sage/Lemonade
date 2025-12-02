@@ -27,6 +27,13 @@ export default function TabLayout() {
           }}
         />
         <Tabs.Screen
+          name="add-survey"
+          options={{
+            title: t("tabs.add-survey"),
+            tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          }}
+        />
+        <Tabs.Screen
           name="add-text-entry"
           options={{
             title: t("tabs.add-text-entry"),
