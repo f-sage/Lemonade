@@ -24,7 +24,8 @@ export const createDbIfNeeded = async (db: SQLiteDatabase) => {
     );
 
     // questions belong to survey revisions
-    // answerType = 'option' | 'text'
+    // answerType = 'text' | 'single_answer' | 'multiple_answer' | "yesno"
+    // see SurveyQuestion.ts
     await db.execAsync(
       "CREATE TABLE IF NOT EXISTS survey_questions "
       + "(id INTEGER PRIMARY KEY AUTOINCREMENT, surveyId INTEGER, createdAt TEXT, "
