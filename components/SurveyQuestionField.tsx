@@ -1,6 +1,13 @@
+import { SurveyQuestion } from "@/models/SurveyQuestion";
 import { StyleSheet, TextInput, View } from "react-native";
 
-export const SurveyQuestionField = ({item, index, onChange}) => {
+interface SurveyQuestionFieldProps {
+  item: SurveyQuestion;
+  index: number;
+  onChange: (item: SurveyQuestion, index: number) => void;
+}
+
+export const SurveyQuestionField = ({item, index, onChange}:SurveyQuestionFieldProps) => {
   const onTextChange = (newText: string)=>{
     item = {...item, text:newText}
     onChange(item, index);
