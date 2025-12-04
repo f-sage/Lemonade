@@ -1,3 +1,5 @@
+// Database schema taken from https://dba.stackexchange.com/questions/11933/questionnaire-database-design-which-way-is-better
+// answer by Matthias Sommer
 import { SQLiteDatabase } from "expo-sqlite";
 
 export const DB_NAME = "lemonade.db"
