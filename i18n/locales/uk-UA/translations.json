@@ -20,5 +20,14 @@
   "add-text-entry":{
     "save" : "Зберегти",
     "placeholder" : "Введіть текст..."
+  },
+
+    "survey":{
+      "answer-types":{
+        "text": "Текст",
+        "yesno": "Так / ні",
+        "single_answer": "Одна відповідь з варіантів",
+        "multiple_answer": "Декілька відповідей з варіантів"
+      }
   }
 }
