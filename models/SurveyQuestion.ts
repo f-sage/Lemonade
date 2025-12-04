@@ -1,4 +1,4 @@
-enum AnswerType {
+export enum AnswerType {
     Text = "text", 
     YesNo = "yesno", // Yes / No question
     SingleAnswer = "single_answer", // choose one option from a predefined list
