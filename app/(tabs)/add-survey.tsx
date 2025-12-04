@@ -1,8 +1,9 @@
 import { SurveyQuestionField } from "@/components/SurveyQuestionField";
 import { ThemedView } from "@/components/themed-view";
 import { emptySurveyQuestion, SurveyQuestion } from "@/models/SurveyQuestion";
+import { createNewSurveyInDb } from "@/scripts/save-survey-to-db";
 import React, { useState } from "react";
-import { Button, FlatList, StyleSheet, Text } from 'react-native';
+import { Button, FlatList, StyleSheet, TextInput } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 interface RenderSurveyQuestionFieldArgs{
@@ -11,6 +12,7 @@ interface RenderSurveyQuestionFieldArgs{
 }
 
 const AddSurveyScreen = () => {
+    const [surveyName, setSurveyName] = useState<string>("");
     const [fields, setFields] = useState<SurveyQuestion[]>([]);
 
     const addField = ()=>{
@@ -19,8 +21,9 @@ const AddSurveyScreen = () => {
     }
 
     const onSavePress = async ()=>{
-      //   const surveyRevisionId =  await createNewSurveyInDb (surveyName);  // creates survey and the first revision and returns revision id
-      //   await saveSurveyQuestionsToDb (surveyId, fields);
+      const surveyRevisionId =  await createNewSurveyInDb (database, surveyName);  // creates survey and the first revision and returns revision id
+      //   await saveSurveyQuestionsToDb (surveyRevisionId, fields);
+      console.log("survey name", surveyName)
       console.log("fields",fields)
       // show success toast
       // go back
@@ -41,9 +44,11 @@ const AddSurveyScreen = () => {
     <SafeAreaProvider>
         <SafeAreaView style={styles.container}>
             <ThemedView>
-                <Text>
-                    add survey
-                </Text>
+                 <TextInput 
+                  value = {surveyName}
+                  onChangeText = {setSurveyName}
+                 />
+
                  <FlatList
                     data={fields}
                     renderItem={renderField}                        
