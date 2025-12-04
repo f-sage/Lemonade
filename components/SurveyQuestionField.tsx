@@ -9,13 +9,14 @@ interface SurveyQuestionFieldProps {
 
 export const SurveyQuestionField = ({item, index, onChange}:SurveyQuestionFieldProps) => {
   const onTextChange = (newText: string)=>{
-    item = {...item, text:newText}
+    item = {...item, text: newText}
     onChange(item, index);
     console.log(item.text)
   }
     return (
         <View style={styles.container}>
-            <TextInput placeholder="text...." 
+            <TextInput 
+              placeholder="text...." 
                        value={item.text} 
                        onChangeText={onTextChange}   
             />
