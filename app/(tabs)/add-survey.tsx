@@ -2,6 +2,7 @@ import { SurveyQuestionField } from "@/components/SurveyQuestionField";
 import { ThemedView } from "@/components/themed-view";
 import { emptySurveyQuestion, SurveyQuestion } from "@/models/SurveyQuestion";
 import { createNewSurveyInDb } from "@/scripts/save-survey-to-db";
+import { useSQLiteContext } from "expo-sqlite";
 import React, { useState } from "react";
 import { Button, FlatList, StyleSheet, TextInput } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
@@ -12,6 +13,7 @@ interface RenderSurveyQuestionFieldArgs{
 }
 
 const AddSurveyScreen = () => {
+    const database = useSQLiteContext();
     const [surveyName, setSurveyName] = useState<string>("");
     const [fields, setFields] = useState<SurveyQuestion[]>([]);
 
@@ -21,10 +23,10 @@ const AddSurveyScreen = () => {
     }
 
     const onSavePress = async ()=>{
+      console.log('save pressed')
       const surveyRevisionId =  await createNewSurveyInDb (database, surveyName);  // creates survey and the first revision and returns revision id
-      //   await saveSurveyQuestionsToDb (surveyRevisionId, fields);
-      console.log("survey name", surveyName)
-      console.log("fields",fields)
+      // await saveSurveyQuestionsToDb (surveyRevisionId, fields);
+
       // show success toast
       // go back
     }
