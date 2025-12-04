@@ -32,7 +32,8 @@ export const SurveyQuestionField = ({item, index, onChange}:SurveyQuestionFieldP
     return (
         <View style={styles.container}>
             <TextInput 
-              placeholder="text...." 
+              placeholder={t("survey.enter-question-text")}
+              multiline
               value={item.text} 
               onChangeText={onTextChange}   
             />

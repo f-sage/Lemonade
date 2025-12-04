@@ -29,6 +29,7 @@
       "yesno": "Yes / No",
       "single_answer": "Single answer",
       "multiple_answer": "Multiple answer"
-    }
+    },
+    "enter-question-text": "Enter question text..."
   }
 }
