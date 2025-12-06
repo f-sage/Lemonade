@@ -7,6 +7,8 @@ export const DB_NAME = "lemonade.db"
 export const createDbIfNeeded = async (db: SQLiteDatabase) => {
   console.log("Creating database...");
   try {
+    await db.execAsync(
+      "DROP TABLE survey_questions ");
     // text entries
     await db.execAsync(
       "CREATE TABLE IF NOT EXISTS textentries (id INTEGER PRIMARY KEY AUTOINCREMENT, text TEXT, createdAt TEXT)"
@@ -30,7 +32,7 @@ export const createDbIfNeeded = async (db: SQLiteDatabase) => {
     // see SurveyQuestion.ts
     await db.execAsync(
       "CREATE TABLE IF NOT EXISTS survey_questions "
-      + "(id INTEGER PRIMARY KEY AUTOINCREMENT, surveyId INTEGER, createdAt TEXT, "
+      + "(id INTEGER PRIMARY KEY AUTOINCREMENT, surveyRevisionId INTEGER, createdAt TEXT, "
       + "text TEXT, answerType TEXT, "
       + "FOREIGN KEY(surveyRevisionId) REFERENCES survey_revisions(id))"
     );

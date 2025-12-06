@@ -1,7 +1,7 @@
 import { SurveyQuestionField } from "@/components/SurveyQuestionField";
 import { ThemedView } from "@/components/themed-view";
 import { emptySurveyQuestion, SurveyQuestion } from "@/models/SurveyQuestion";
-import { createNewSurveyInDb } from "@/scripts/save-survey-to-db";
+import { createNewSurveyInDb, saveSurveyQuestionsToDb } from "@/scripts/save-survey-to-db";
 import { useSQLiteContext } from "expo-sqlite";
 import React, { useState } from "react";
 import { Button, FlatList, StyleSheet, TextInput } from 'react-native';
@@ -24,11 +24,18 @@ const AddSurveyScreen = () => {
 
     const onSavePress = async ()=>{
       console.log('save pressed')
+      // if new survey:  
       const surveyRevisionId =  await createNewSurveyInDb (database, surveyName);  // creates survey and the first revision and returns revision id
-      // await saveSurveyQuestionsToDb (surveyRevisionId, fields);
+      await saveSurveyQuestionsToDb (database, surveyRevisionId, fields);
+
+      // if editing a survey :
+      // save survey name 
+      // save revision under surveyId
+      // questions may already exist 
+      // so create/update depending on if question has an id > 0
 
       // show success toast
-      // go back
+      // go back      
     }
 
     const onItemUpdate = (item: SurveyQuestion, index: number) => {
