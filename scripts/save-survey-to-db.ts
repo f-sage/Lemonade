@@ -35,7 +35,7 @@ export const saveSurveyQuestionsToDb = async (db: SQLiteDatabase, surveyRevision
           }
       });
 
-    console.log(`Success! Inserted ${questions.length} records.`);
+    console.log(`Success! Inserted ${questions.length} records into survey_questions table.`);
   } catch (error) {
     console.error("Transaction failed:", error.message);
   }
