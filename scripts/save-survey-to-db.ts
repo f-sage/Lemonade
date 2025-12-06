@@ -27,6 +27,7 @@ export const saveSurveyQuestionsToDb = async (db: SQLiteDatabase, surveyRevision
     try {
       await db.withTransactionAsync(async () => {
         for (const record of questions) {
+          // todo what if a question's text is empty, or it has no type?
           await db.runAsync(
           `INSERT INTO survey_questions (surveyRevisionId, createdAt, text, answerType) VALUES (?, ?, ?, ?)`,
             [surveyRevisionId, currentDateTime, record.text, record.answerType]
