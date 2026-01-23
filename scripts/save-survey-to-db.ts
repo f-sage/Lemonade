@@ -28,11 +28,16 @@ export const saveSurveyQuestionsToDb = async (db: SQLiteDatabase, surveyRevision
       await db.withTransactionAsync(async () => {
         for (const record of questions) {
           // todo what if a question's text is empty, or it has no type?
-          await db.runAsync(
-          `INSERT INTO survey_questions (surveyRevisionId, createdAt, text, answerType) VALUES (?, ?, ?, ?)`,
+          if (record.answerType && record.text) {
+            await db.runAsync(
+            `INSERT INTO survey_questions (surveyRevisionId, createdAt, text, answerType) VALUES (?, ?, ?, ?)`,
             [surveyRevisionId, currentDateTime, record.text, record.answerType]
             );
           }
+          else{
+            console.log('A question is missing either type or text and will not be saved: ', record.answerType, "; ", record.text);
+          }
+        }
       });
 
     console.log(`Success! Inserted ${questions.length} records into survey_questions table.`);
